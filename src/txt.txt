@@ -1,0 +1,59 @@
+/* Links */
+a {
+  color: #00ff55;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: #333333;
+}
+
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 5vw, 2rem);
+}
+
+/* Layout Classes */
+.layout {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+}
+
+/* Post Styles */
+.posts {
+  display: grid;
+  gap: 2rem;
+  padding: 2rem 0;
+}
+
+.post {
+  padding: 1.5rem;
+  border-radius: 10px;
+  background:rgb(126, 67, 67);
+  transition: transform 0.2s ease;
+}
+
+.post:hover {
+  transform: translateY(-2px);
+}
+
+.post-title {
+  font-size: 1.5rem;
+  color:rgb(187, 255, 0);
+  margin-bottom: 0.5rem;
+}
+
+.post-date {
+  font-size: 0.875rem;
+  color: #555555;
+}
+
+.post-description {
+  margin-top: 1rem;
+  color: #555555;
+  line-height: 1.6;
+}
