@@ -52,6 +52,7 @@
     "@fontsource/jetbrains-mono": "^5.1.2",
     "@fontsource/manrope": "^5.1.1",
     "lucide-svelte": "^0.474.0",
-    "open-props": "^1.7.12"
+    "open-props": "^1.7.12",
+    "pocketbase": "^0.25.2"
   }
 }

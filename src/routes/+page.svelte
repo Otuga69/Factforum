@@ -9,17 +9,22 @@
 </svelte:head>
 
 <section>
-  <nav class="container"> 
+  
+    <nav class="container"> 
     <ul class="posts">
-      {#each data.posts as post}
-        <li class="post">
+        {#each data.posts as post}
+        <li class="card">
           <a href={post.slug} class="post-title">{post.title}</a>
           <p class="post-date">{formatDate(post.date)}</p>
           <p class="post-description">{post.description}</p>
         </li>
       {/each}
+      
+
     </ul>
   </nav>
+  
+  
   
 </section>
 
@@ -40,14 +45,19 @@
   padding: 2rem 0;
 }
 
-.post {
-  padding: 1.5rem;
-  border-radius: 10px;
-  background:#3d3d3d;
-  transition: transform 0.2s ease;
+.card {
+  flex-basis: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background:rgb(43, 42, 42);
+  border: 1px solid #1a1a1a;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.post:hover {
+.card:hover {
   transform: translateY(-2px);
 }
 

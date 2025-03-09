@@ -1,5 +1,15 @@
 <script lang="ts">
-    import * as config from '$lib/config'
+    import { goto } from '$app/navigation';
+    import * as config from '$lib/config';
+    
+
+    function goToLogin() {
+        goto('/login');
+    }
+
+    function goToSignup() {
+        goto('/signup');
+    }
 </script>
 
 <nav class="container">
@@ -12,9 +22,15 @@
         <li><a href="/contact">Contact</a></li>
         <li><a href="/rss.xml" target="_blank">RSS</a></li>
     </ul>
+    
+    <div class="auth-buttons">
+        <button class="button" on:click={goToLogin}>Login</button>
+        <button class="button" on:click={goToSignup}>Sign Up</button>
+        
+    </div>
+</nav>
+
   
-    <button class="theme-toggle">Toggle</button>
-  </nav>
 
 <style>
     .container {
@@ -24,7 +40,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 32px;
+      gap: 20px;
   }
 
   .title {
@@ -49,12 +65,11 @@
       color: #000000;
   }
 
-  .theme-toggle {
-      padding: 8px 16px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      background: #f0f0f0;
-      color: #333;
-      cursor: pointer;
-  }
+  .auth-buttons {
+    display: flex;
+    gap: 10px; /* Adjust the space between buttons */
+}
+
+
+  
 </style>

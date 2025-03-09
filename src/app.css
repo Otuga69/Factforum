@@ -1,11 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 @import "~@fontsource/atkinson-hyperlegible/400.css";
 @import "~@fontsource/atkinson-hyperlegible/700.css";
 @import "~@fontsource/jetbrains-mono/400.css";
 @import "~@fontsource/jetbrains-mono/700.css";
+@import "https://unpkg.com/open-props";
+@import "https://unpkg.com/open-props/normalize.min.css";
+
 
 
 /* CSS Reset and Base Styles */
@@ -13,39 +15,12 @@
   /* Font Families */
   font-family: 'Atkinson Hyperlegible', sans-serif;
   font-family: 'JetBrains Mono', monospace;
+  --font-monospace-slab-serif: Nimbus Mono PS, Courier New, monospace;
+  --button-background: var(--brand);
+  --button-text: var(--text-1);
   
-  /* Color System */
-  --brand-dark: #ff6600; /* Example replacement for --orange-3 */
-  --brand-light: #ffcc99; /* Example replacement for --orange-10 */
-  
-  /* Text Colors */
-  --text-1-dark: #333333; /* Example replacement for --gray-3 */
-  --text-2-dark: #555555; /* Example replacement for --gray-5 */
-  --text-1-light: #aaaaaa; /* Example replacement for --gray-8 */
-  --text-2-light: #bbbbbb; /* Example replacement for --gray-7 */
-  
-  /* Surface Colors */
-  --surface-1-dark: #1a1a1a; /* Example replacement for --gray-12 */
-  --surface-2-dark: #292929; /* Example replacement for --gray-11 */
-  --surface-3-dark: #383838; /* Example replacement for --gray-10 */
-  --surface-4-dark: #474747; /* Example replacement for --gray-9 */
-  --surface-1-light: #ffffff; /* Example replacement for --gray-0 */
-  --surface-2-light: #f5f5f5; /* Example replacement for --gray-1 */
-  --surface-3-light: #e0e0e0; /* Example replacement for --gray-2 */
-  --surface-4-light: #d6d6d6; /* Example replacement for --gray-3 */
-  
-  /* Misc */
-  --background-dark: linear-gradient(to right, #000000, #222222); /* Example replacement for --gradient-8 */
-  --background-light: none;
-  --border-dark: #474747;
-  --border-light: #cccccc;
-  
-  /* Layout */
-  --max-width: 1440px;
-  --nav-height: 4rem;
-  --footer-height: 3rem;
-  --content-padding: clamp(1rem, 5vw, 2rem);
 }
+
 
 /* Dark Theme (Default) */
 :root {
@@ -56,10 +31,27 @@
   --surface-1: #1a1a1a;
   --surface-2: #292929;
   --surface-3: #383838;
-  --surface-4: #474747;
+  --surface-4:rgb(75, 72, 72);
   --background: linear-gradient(to right, #000000, #222222);
   --border: #474747;
 }
+
+:root {
+  --animation-float: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
 
 /* Light Theme */
 @media (prefers-color-scheme: light) {
@@ -77,25 +69,77 @@
   }
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .button:focus {
+    transition: outline-offset 0.25s ease;
+  }
+  .button:focus:not(:active) {
+    outline-offset: 5px;
+  }
+}
+
+
 /* Base Styles */
 html {
   font-family: 'Atkinson Hyperlegible', sans-serif;
-  color: #000000;
-  background:rgba(0, 0, 0, 0);
-  background-image:  url('/castelTex.png');
-  background-size: 128px 128px;
-  background-position: center;
-  background-repeat: repeat;
-  image-rendering: pixelated;
+  color:rgba(0, 0, 0, 0);
+  background-color: #212529;
+  
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
+}
+
+main {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+  justify-content: space-around;
+  max-inline-size: calc(320px * 4);
+  gap: 20px;
+  padding: 20px;
+}
+
+
+
+.card > h5 {
+  line-height: 1.4;
 }
 
 body {
   min-height: 100vh;
   margin: 0;
+  display: grid;
+  place-content: center;
   display: flex;
   flex-direction: column;
+}
+
+.button {
+  display: inline-flex;
+  white-space: nowrap;
+
+  font-size: 1.125rem; /* Replaced var(--font-size-fluid-1) */
+  font-weight: 700;
+   /* Replaced var(--font-weight-7) */
+  gap: 2rem;
+  padding-inline: 1.5rem; /* Replaced var(--size-6) */
+  padding-block: 0.75rem; /* Replaced var(--size-3) */
+
+  color:rgb(200, 201, 204); /* Replaced var(--blue-9) */
+  border: 2px solid #60a5fa; /* Replaced var(--border-size-2) and var(--blue-5) */
+  background-color: transparent;
+  border-radius: 0.375rem; /* Replaced var(--radius-2) */
+
+  &:is(:hover, :focus) {
+    cursor: pointer;
+    color: #f0f9ff; /* Replaced var(--blue-0) */
+    background-color: #60a5fa; /* Replaced var(--blue-5) */
+  }
+
+  &:active:not(:focus-visible) {
+    position: relative;
+    /* inset-block-start: 2px; */
+  }
 }
 
 .prose {
@@ -134,9 +178,11 @@ body {
 }
 
 
+
+
 /* Utility Classes */
 .surface-1 { background-color: #330785; color: #422b6d; }
 .surface-2 { background-color: #292929; color: #555555; }
 .surface-3 { background-color: #383838; color: #333333; }
-.surface-4 { background-color: #474747; color: #333333; }
+.surface-4 { background-color: #0d0f12; color:rgb(180, 173, 173); }
 
